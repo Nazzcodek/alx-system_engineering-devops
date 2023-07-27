@@ -1,8 +1,13 @@
 #!/usr/bin/env bash
-# This script is displaying hour and minut
-for hour in {0..12}; do
+# This script is displaying hour and minute
+hour=0
+minute=1
+while [ $hour -le 12 ]; do
 	echo "Hour: $hour"
-	for minute in {1..59}; do
+	while [ $minute -le 59 ]; do
 		echo "$minute"
+		((minute++))
 	done
+	minute=1
+	((hour++))
 done
