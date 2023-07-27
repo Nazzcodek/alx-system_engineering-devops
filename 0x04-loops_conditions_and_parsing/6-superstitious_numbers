@@ -3,17 +3,22 @@
 # 4th, 9th, and 17th iteration define
 num=1
 while [ $num -le 20 ]; do
-        if [ $num -eq 4 ]; then
-		echo "$num"
-                echo 'bad luck from China'
-        elif [ $num -eq 9 ]; then
-		echo "$num"
-                echo 'bad luck from Japan'
-	elif [ $num -eq 17 ]; then
-		echo "$num"
-		echo 'bad luck from Italy'
-        else
-                echo "$num"
-        fi
-	((num++))
+	case $num in
+        4)
+            echo "$num"
+            echo 'bad luck from China'
+            ;;
+        9)
+            echo "$num"
+            echo 'bad luck from Japan'
+            ;;
+        17)
+            echo "$num"
+            echo 'bad luck from Italy'
+            ;;
+        *)
+            echo "$num"
+            ;;
+    esac
+    ((num++))
 done 
