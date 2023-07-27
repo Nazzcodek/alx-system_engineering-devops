@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+# This script read for passwd
+while IFS=':' read -r username _ userid groupid _ homedir shell; do
+    echo "The user $username is part of the gang with GROUP_ID $groupid,"
+    echo "lives in $homedir, and rides $shell."
+    echo -n "USER ID's place is protected by the passcode: "
+    read -r -s password
+    echo
+    echo "More info about the user here: https://example.com/users/$userid"
+    echo
+done < /etc/passwd
