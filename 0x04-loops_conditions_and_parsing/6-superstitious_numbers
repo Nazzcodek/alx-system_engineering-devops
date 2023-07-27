@@ -1,8 +1,6 @@
 #!/usr/bin/env bash
 # This script is displaying number 1 to 20
-# after 4 it display bad luck from China
-# after 9 it display bad luck from Japan
-#after 17 it display bad luck from Italy
+# 4th, 9th, and 17th iteration define
 for i in {1..20}; do
         if [ $i -eq 4 ]; then
 		echo "$i"
