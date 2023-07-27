@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+# This script is displaying "Best School" 10 times
+# Befor the 10th iteration 'Hi' is display
+count=10
+while [ $count -gt 0 ]; do
+        echo "Best School"
+        ((count--))
+	if [ $count -eq 1 ]; then
+		echo "Hi"
+	fi
+done 
