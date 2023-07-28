@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+# Script to display all the running process
+all_process=$(ps auxf)
+echo "$all_process"
