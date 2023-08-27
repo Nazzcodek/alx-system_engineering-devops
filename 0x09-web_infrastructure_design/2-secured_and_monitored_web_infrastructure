@@ -1,0 +1,17 @@
+https://i.imgur.com/3EeE7cc.jpg
+
+
+
+Infrastructure Specifics:
+1. Firewalls have been implemented for enhanced security and traffic control. Additionally, monitoring tools have been integrated to oversee both the application and server, ensuring optimal performance and data collection.
+2. Firewalls, whether software or hardware-based, block unauthorized network access. They scrutinize incoming and outgoing data based on set rules, allowing only compliant data through.
+3. HTTPS is a secure version of HTTP, employing data encryption for transfers. When an HTTPS request is made, the server responds with a public key and SSL certificate. An SSL handshake occurs, where the client provides matching credentials, enabling data decryption on the client's end.
+4. Monitoring tools gather data about application and server operations and performance. They highlight anomalies affecting performance, guiding troubleshooting efforts to specific problem areas.
+5. Continuous data collection occurs during application and server operations. Metrics like performance, availability, and user experiences are tracked, and any issues are promptly identified and addressed.
+6. Initial setup involves the deployment of monitoring tools capable of assessing metrics, such as queries per second, to gauge traffic handling and scalability.
+
+Infrastructure Issues:
+1. Opting for SSL termination can compromise the security of sensitive transactional data, as transactions should occur over secure connections.
+2. Relying on a single MySQL server poses scalability challenges and introduces a single point of failure for the web infrastructure.
+3. Servers housing identical components can lead to resource contention (CPU, Memory, I/O, etc.), resulting in suboptimal performance. Pinpointing issues becomes challenging, and such a setup lacks scalability.
+
