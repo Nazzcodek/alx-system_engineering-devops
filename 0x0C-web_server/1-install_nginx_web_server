@@ -1,5 +1,4 @@
 #!/usr/bin/env bash
-
 # installing nginx webserver serve on port 80
 
 # update server
