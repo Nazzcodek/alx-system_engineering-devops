@@ -8,17 +8,21 @@ sudo apt-get update
 sudo apt-get -y install nginx
 
 # on GET request
-cat <<EOF | sudo tee /etc/nginx/sites-available/redirect_me
-server {
-        listen 80;
-        listen [::]:80;
+echo 'Hello World!' | sudo tee /var/www/html/index.html
 
-        server_name _;
+#configure server
+sudo printf "server {
+    listen 80;
+    listen [::]:80;
+    server_name _;
+    }ocation /redirect_me {
+        return 301 https://www.youtube.com/watch?v=QH2-TGUlwu4;
+}" | tee /etc/nginx/sites-available/redirect_me
 
-        location / {
-       		return 301 https://www.youtube.com/watch?v=QH2-TGUlwu4 }
-}
-EOF
+sudo ln -s /etc/nginx/sites-available/redirect_me /etc/nginx/sites-enabled/redirect_me
+
+#affirm config
+sudo nginx -t
+
 #start server
-sudo service nginx restart
-
+sudo service nginx reload
