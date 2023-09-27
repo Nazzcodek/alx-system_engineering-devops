@@ -15,15 +15,16 @@ sudo printf "server {
     listen 80;
     listen [::]:80;
     server_name _;
+    location / {
+      root   /var/www/html;
+      index  index.html;
+    }
+
     location /redirect_me {
-        return 301 https://www.youtube.com/watch?v=QH2-TGUlwu4;
-	}
-}" | tee /etc/nginx/sites-available/redirect_me
+      return 301 https://www.youtube.com/watch?v=QH2-TGUlwu4;
+    }
+  }" | tee /etc/nginx/sites-available/redirect_me
 
-sudo ln -s /etc/nginx/sites-available/redirect_me /etc/nginx/sites-enabled/redirect_me
-
-#affirm config
-sudo nginx -t
 
 #start server
-sudo service nginx reload
+sudo service nginx restart
