@@ -6,3 +6,46 @@ sudo apt-get update
 
 #install haproxy
 sudo apt-get -y install haproxy=2.0.\*
+
+# HAProxy Configuration
+haproxy_config=$(cat <<EOF
+defaults
+    log global
+    mode http
+    option httplog
+    option dontlognull
+    timeout connect 5000
+    timeout client 50000
+    timeout server 50000
+
+frontend haproxynode
+    bind *:80
+    default_backend myservers
+
+backend myservers
+    balance roundrobin
+    server 240206-web-01 54.157.143.250:80 check
+    server 240206-web-02 52.3.245.154:80 check
+EOF
+)
+
+# Update HAProxy Configuration File
+echo "$haproxy_config" | sudo tee /etc/haproxy/haproxy.cfg
+
+# Start HAProxy service on boot enable
+sudo systemctl enable haproxy
+
+# Start HAProxy service
+sudo systemctl start haproxy
+
+# Allow HAProxy through firewal
+sudo ufw allow 80/tcp
+
+# Stop HAProxy service
+sudo systemctl stop haproxy
+
+# Restart HAProxy service
+sudo service haproxy restart
+
+# HAProxy service status
+sudo systemctl status haproxy
