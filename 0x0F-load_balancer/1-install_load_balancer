@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+# Setting haproxy load balancer
+
+# update 
+sudo apt-get update
+
+#install haproxy
+sudo apt-get -y install haproxy=2.0.\*
