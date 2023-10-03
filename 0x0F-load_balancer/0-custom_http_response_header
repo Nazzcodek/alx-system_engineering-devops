@@ -18,11 +18,7 @@ hostname=$(hostname)
 
 # configure server
 sudo printf "server {
-<<<<<<< HEAD
-	listen 8;
-=======
 	listen 80;
->>>>>>> d14b222f292ac385edaca9d29744e0d93497e069
 	listen [::]:80 default_server;
 	add_header X-Served-By $hostname;
 	root /var/www/html;
