@@ -41,9 +41,6 @@ sudo systemctl start haproxy
 # Allow HAProxy through firewal
 sudo ufw allow 80/tcp
 
-# Stop HAProxy service
-sudo systemctl stop haproxy
-
 # Restart HAProxy service
 sudo service haproxy restart
 
