@@ -1,30 +1,34 @@
 # custom HTTP header response with puppet
-#
-exec { 'update':
-  command => '/usr/bin/apt-get update',
-}
 
+# install nginx
 package { 'nginx':
-  ensure => 'present',
-}
-
-~> file { '/etc/nginx/nginx.conf':
-  ensure  => 'file',
-  content => "http {\n\tadd_header X-Served-By \"\${hostname}\";\n}",
-}
-
-~> exec { 'restart_nginx':
-  command     => '/usr/sbin/service nginx restart',
-  refreshonly => true,
+  ensure => 'installed',
 }
 
 file { '/etc/nginx/sites-available/default':
-  ensure  => 'file',
-  content => "server {\n\tlisten 80;\n\tserver_name _;\n\tlocation / {\n\t\treturn 404;\n\t}\n\tlocation /redirect_me {\n\t\treturn 301 https://www.github.com/Cofucan;\n\t}\n\terror_page 404 /404.html;\n\tlocation = /404.html {\n\t\troot /var/www/html/;\n\t\tinternal;\n\t}\n}",
+  ensure  => file,
+  content => "server {
+        listen 80;
+        listen [::]:80 default_server;
+        add_header X-Served-By $::hostname;
+        root /var/www/html;
+        index index.html index.html index.htm index.nginx-debian.html;
+
+        location /redirect_me {
+                return 301 https://www.youtube.com/watch?v=QH2-TGUlwu4;
+        }
+
+        error_page 404 /404.html;
+        location = /404.html {
+                root /var/www/html/;
+                internal;
+        }
+  }",
+  require => package['nginx'],
 }
 
-~> exec { 'reload_nginx':
-  command     => '/usr/sbin/service nginx reload',
-  refreshonly => true,
+service { 'nginx':
+    ensure  => 'running',
+    enable  => true,
+    require => [File['/etc/nginx/sites-available/default']],
 }
-
