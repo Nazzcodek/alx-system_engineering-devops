@@ -1,16 +1,20 @@
 # custom HTTP header response with puppet
 
+# update server
+exec {'update':
+  command => '/usr/bin/apt-get update',
+}
 # install nginx
-package { 'nginx':
+-> package { 'nginx':
   ensure => 'installed',
 }
-
-file { '/etc/nginx/sites-available/default':
+# seerve header
+-> file { '/etc/nginx/sites-available/default':
   ensure  => file,
   content => "server {
         listen 80;
         listen [::]:80 default_server;
-        add_header X-Served-By $::hostname;
+        add_header X-Served-By \"${hostname}\";
         root /var/www/html;
         index index.html index.html index.htm index.nginx-debian.html;
 
@@ -24,11 +28,8 @@ file { '/etc/nginx/sites-available/default':
                 internal;
         }
   }",
-  require => package['nginx'],
+  require => Package['nginx'],
 }
-
-service { 'nginx':
-    ensure  => 'running',
-    enable  => true,
-    require => [File['/etc/nginx/sites-available/default']],
+-> exec {'run':
+  command => '/usr/sbin/service nginx restart',
 }
