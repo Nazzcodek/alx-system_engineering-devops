@@ -11,20 +11,26 @@ sudo apt-get -y install nginx
 echo 'Hello World!' | sudo tee /var/www/html/index.html
 echo "Ceci n'est pas une page" | sudo tee /etc/nginx/html/404.html
 
+hostname=$(hostname)
+
 #configure server
 sudo printf "server {
-    listen 80;
-    listen [::]:80;
-    server_name _;
-    location /redirect_me {
-        return 301 https://www.youtube.com/watch?v=QH2-TGUlwu4;
-	}
-    error_page 404 /404.html;
-    location /404 {
-      root /etc/nginx/html;
-      internal;
-	}
-}" | tee /etc/nginx/sites-available/default
+	listen 8;
+        listen [::]:80 default_server;
+        add_header X-Served-By $hostname;
+        root /var/www/html;
+        index index.html index.html index.htm index.nginx-debian.html;
 
-#start server
-sudo service nginx restart 
+        location /redirect_me {
+                return 301 https://www.youtube.com/watch?v=QH2-TGUlwu4;
+        }
+
+        error_page 404 /404.html;
+        location = /404.html {
+                root /var/www/html/;
+                internal;
+        }
+}" > /etc/nginx/sites-available/default
+
+# restart server
+sudo service nginx restart

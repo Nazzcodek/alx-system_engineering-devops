@@ -19,20 +19,20 @@ hostname=$(hostname)
 # configure server
 sudo printf "server {
 	listen 80;
-    listen [::]:80 default_server;
-    add_header X-Served-By $hostname;
-    root /var/www/html;
-    index index.html index.html index.htm index.nginx-debian.html;
+	listen [::]:80 default_server;
+	add_header X-Served-By $hostname;
+	root /var/www/html;
+	index index.html index.html index.htm index.nginx-debian.html;
 
-    location /redirect_me {
-        return 301 https://www.github.com/Cofucan;
-    }
+	location /redirect_me {
+		return 301 https://www.youtube.com/watch?v=QH2-TGUlwu4;
+	}
 
-    error_page 404 /404.html;
-    location = /404.html {
-        root /var/www/html/;
-        internal;
-    }
+	error_page 404 /404.html;
+	location = /404.html {
+		root /var/www/html/;
+		internal;
+	}
 }" > /etc/nginx/sites-available/default
 
 # Restart Nginx server
