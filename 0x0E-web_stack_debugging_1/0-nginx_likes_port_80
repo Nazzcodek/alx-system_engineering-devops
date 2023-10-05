@@ -1,8 +1,10 @@
 #!/usr/bin/env bash
 # A bash script for nginx server to listen at port 80
 
-# updating the default file to listen at poort 80
-sudo sed -i 's/listen 80;/listen 80 default_server;/g' /etc/nginx/sites-available/default
+# remove the default file 
+sudo rm /etc/nginx/sites-enable/default
 
+# create a symbolic link
+sudo ln -s /etc/nginx/sites-available/default /etc/nginx/sites-enable/default
 # Restart Nginx
 sudo service nginx restart
