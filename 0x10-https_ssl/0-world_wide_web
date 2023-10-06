@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+# cionfigure domain zone for subdomain www
+domain_info () {
+    line=$(dig "$2"."$1" | grep -A1 'ANSWER SECTION:' | tr '\t' '\n' | tail -2 | tr '\n' ' ')
+    echo "$2 $line" | awk '{print "The subdomain " $1 " is a " $2 " record and points to " $3}'
+}
+
+sub_d=('www' 'web-01' 'web-02' 'lb-01')
+
+if [ "$#" == 1 ]
+then
+  domain_info "$1" "${sub_d[0]}"
+  domain_info "$1" "${sub_d[1]}"
+  domain_info "$1" "${sub_d[2]}"
+  domain_info "$1" "${sub_d[3]}"
+elif [ "$#" == 2 ]
+then
+  domain_info "$1" "$2"
+fi
