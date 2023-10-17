@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+# script to run nginx as user
+
+# stop nginx
+sudo service nginx stop
+
+# Replace 'user' directive in the Nginx configuration
+sudo sed -i 's/user\s*nginx;/user nginx;/' /etc/nginx/nginx.conf
+
+# Update Nginx to listen on port 8080
+sudo sed -i 's/listen\s*80;/listen 8080;/' /etc/nginx/sites-available/default
+
+# Start Nginx
+sudo service nginx start
