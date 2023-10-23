@@ -26,12 +26,15 @@ def todo_tracker(filename):
         todos_url = f"{url}/{user_id}/todos"
         todos_data = r.get(todos_url).json()
 
-        user_tasks = [{"username": username,
-                       "task": task['title'],
-                       "completed": task['completed'],
-                       }
-                      for task in todos_data
-                      ]
+        user_tasks = []
+        for task in todos_data:
+            title = task["title"]
+            completed = task["completed"]
+            user_tasks.append({"username": username,
+                              "task": title,
+                              "completed": completed
+                              }
+                             )
 
         all_employees_data[user_id] = user_tasks
 
