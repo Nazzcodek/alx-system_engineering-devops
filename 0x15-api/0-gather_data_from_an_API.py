@@ -31,7 +31,7 @@ def todo_tracker(e_id):
             discription.append(todo['title'])
     print(f"Employee {name} is done with tasks({completed}/{total_todos}):")
     for i in discription:
-        print(f"\t{i}")
+        print(f"\t {i}".expandtabs(4))
 
 
 if __name__ == "__main__":
