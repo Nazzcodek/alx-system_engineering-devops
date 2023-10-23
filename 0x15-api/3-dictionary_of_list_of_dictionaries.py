@@ -31,10 +31,10 @@ def todo_tracker(filename):
             title = task["title"]
             completed = task["completed"]
             user_tasks.append({"username": username,
-                              "task": title,
-                              "completed": completed
-                              }
-                             )
+                               "task": title,
+                               "completed": completed
+                               }
+                              )
 
         all_employees_data[user_id] = user_tasks
 
