@@ -4,7 +4,7 @@ This module returns information about Employee TODO list progress.
 using Employee ID
 storing the data in a json file
 """
-import json 
+import json
 import requests as r
 import sys
 
