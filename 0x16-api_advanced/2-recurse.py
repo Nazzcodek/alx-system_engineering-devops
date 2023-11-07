@@ -1,6 +1,6 @@
-#!/usr/bin/pyhton3
+#!/usr/bin/python3
 """
-This module doc
+This module recursively get hot-list of post
 """
 import requests
 
