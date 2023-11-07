@@ -5,21 +5,24 @@ This module get the all subscribers on reddit
 import requests
 
 
-def number_of_subscribers(subreddit):
+def top_ten(subreddit):
     """This method get the title of top ten post"""
     if subreddit is None:
         return 0
 
     get_url = f'https://www.reddit.com/r/{subreddit}/about.json'
     headers = {'User-Agent': 'NaziffAgent', 'from': 'bellnas09@gmail.com'}
+    params = {'limit': 10}
 
-    response = requests.get(get_url, headers=headers)
+    response = requests.get(get_url, headers=headers, params=params)
 
     if response.status_code == 200:
         data = response.json()
 
-        top_ten = data['data']['children'][:10]
-        for post in top_ten:
-            print(post['data']['title'])
+        top_posts = data.get('data', {}).get('children', None)
+
+        for post in top_posts:
+            title = post.get('data', {}).get('title', '')
+            print(title)
     else:
         return 0
