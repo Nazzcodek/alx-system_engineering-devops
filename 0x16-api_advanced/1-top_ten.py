@@ -10,7 +10,7 @@ def top_ten(subreddit):
     if subreddit is None:
         return 0
 
-    get_url = f'https://www.reddit.com/r/{subreddit}/about.json'
+    get_url = 'https://www.reddit.com/r/{}/hot.json'.format(subreddit)
     headers = {'User-Agent': 'NaziffAgent', 'from': 'bellnas09@gmail.com'}
     params = {'limit': 10}
 
