@@ -5,7 +5,7 @@ This module recursively get hot-list of post
 import requests
 
 
-def recurse(subreddit, hot_list=[]):
+def recurse(subreddit, hot_list=[], after=None):
     """This is a recursive method"""
     get_url = 'http://www.reddit.com/r/{}/hot.json'.format(subreddit)
     headers = {'User-Agent': 'NaziffAgent', 'from': 'bellnas09@gmail.com'}
