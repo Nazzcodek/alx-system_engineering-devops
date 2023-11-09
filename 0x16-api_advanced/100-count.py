@@ -13,7 +13,7 @@ def count_words(subreddit, word_list, after=None, counts=None):
     url = f'https://www.reddit.com/r/{subreddit}/hot.json'
 
     # Set a custom User-Agent and disable following redirects
-    headers = {'User-Agent': 'RedditDataAnalyzer/1.0 (ALX Africa)'}
+    headers = {'User-Agent': 'Naziff_Agent ALX'}
     params = {'limit': 100}  # Limit the number of posts to 100 (maximum)
 
     if after:
