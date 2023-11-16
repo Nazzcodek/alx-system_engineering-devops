@@ -7,7 +7,7 @@ exec {'ulimit-value':
 } ->
 
 # Restart Nginx
- exec { 'nginx-restart':
+exec {'nginx-restart':
   command => 'nginx restart',
   path    => '/etc/init.d/'
   require => Exec['ulimit-value'],
